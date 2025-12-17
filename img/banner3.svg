@@ -1,0 +1,36 @@
+<svg width="1600" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="600" fill="url(#grad3)"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="1400" cy="200" r="100" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="250" cy="400" r="90" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="1550" cy="550" r="50" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Icon -->
+  <text x="800" y="180" font-size="120" text-anchor="middle" fill="white">🚚</text>
+  
+  <!-- Main Text -->
+  <text x="800" y="280" font-size="72" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">
+    MIỄN PHÍ VẬN CHUYỂN
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="800" y="350" font-size="42" text-anchor="middle" fill="white" font-family="Arial, sans-serif">
+    Đơn hàng từ 200.000đ
+  </text>
+  
+  <!-- Delivery Info -->
+  <rect x="600" y="400" width="400" height="80" rx="40" fill="white" opacity="0.9"/>
+  <text x="800" y="450" font-size="36" font-weight="bold" text-anchor="middle" fill="#00f2fe" font-family="Arial, sans-serif">
+    Giao Hàng Toàn Quốc
+  </text>
+</svg>

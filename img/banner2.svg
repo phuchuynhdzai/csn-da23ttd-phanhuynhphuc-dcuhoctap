@@ -1,0 +1,36 @@
+<svg width="1600" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="600" fill="url(#grad2)"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="1300" cy="150" r="120" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="300" cy="450" r="80" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="1500" cy="500" r="60" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Icon -->
+  <text x="800" y="180" font-size="120" text-anchor="middle" fill="white">📚</text>
+  
+  <!-- Main Text -->
+  <text x="800" y="280" font-size="68" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">
+    BỘ DỤNG CỤ HỌC TẬP CHẤT LƯỢNG
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="800" y="350" font-size="42" text-anchor="middle" fill="white" font-family="Arial, sans-serif">
+    Bút - Vở - Balo - Máy Tính
+  </text>
+  
+  <!-- Price Tag -->
+  <rect x="600" y="400" width="400" height="80" rx="40" fill="white" opacity="0.9"/>
+  <text x="800" y="450" font-size="36" font-weight="bold" text-anchor="middle" fill="#f5576c" font-family="Arial, sans-serif">
+    Giá Tốt Nhất Thị Trường
+  </text>
+</svg>
