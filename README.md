@@ -8,8 +8,8 @@
 | **Sinh viên** | Phan Huỳnh Phúc |
 | **MSSV** | 110123159 |
 | **Lớp** | DA23TTD |
-| **GVHD** | [Điền tên GVHD] |
-| **Năm học** | 2024-2025 |
+| **GVHD** | Nguyễn Khắc Quốc |
+| **Năm học** |2025-2026 |
 
 ## 📝 Mô tả đồ án
 
