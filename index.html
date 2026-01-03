@@ -1,0 +1,727 @@
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> CỬA HÀNG DỤNG CỤ HỌC TẬP</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">
+                    <span class="logo-main">DỤNG CỤ HỌC TẬP</span>
+                    <span class="logo-sub">Chất Lượng - Giá Tốt</span>
+                </span>
+            </div>
+        <ul class="menu">
+        <li onclick="chuyenTrang('home')">Trang Chủ</li>
+        <li onclick="chuyenTrang('products')">Sản Phẩm</li>
+        <li onclick="chuyenTrang('news')">Tin Tức</li>
+        <li onclick="chuyenTrang('promo')">Khuyến Mãi</li>
+        <li onclick="chuyenTrang('about')">Giới Thiệu</li>
+        <li onclick="chuyenTrang('contact')">Liên Hệ</li>
+        <li onclick="chuyenTrang('cart')">Giỏ Hàng <span id="cart-count">(0)</span></li>
+        
+        <li id="auth-link" onclick="chuyenTrang('login')"><i class="fas fa-sign-in-alt"></i> Đăng Nhập</li>
+        <li id="register-link" onclick="chuyenTrang('register')"><i class="fas fa-user-plus"></i> Đăng Ký</li>
+        <li id="user-greeting" style="display:none;" onclick="chuyenTrang('profile')"><i class="fas fa-user-circle"></i> <span id="username-display"></span></li>
+        <li id="admin-link" style="display:none;" onclick="chuyenTrang('admin-login')"><i class="fas fa-user-shield"></i> Quản trị</li>
+        <li id="logout-link" style="display:none;" onclick="dangXuat()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+    </ul>
+        </nav>
+        <section id="news" class="page" style="display:none;">
+        <h2>📰 Tin Tức & Sự Kiện</h2>
+        <div id="news-articles-list" class="articles-grid">
+            <div class="placeholder-content">
+                <p>Đang tải tin tức...</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="promo" class="page" style="display:none;">
+        <h2>🎁 Chương Trình Khuyến Mãi</h2>
+        <div id="promo-articles-list" class="articles-grid">
+            <div class="placeholder-content">
+                <p>Đang tải khuyến mãi...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trang Giới Thiệu -->
+    <section id="about" class="page" style="display:none;">
+        <h2>📖 Giới Thiệu Về Chúng Tôi</h2>
+        <div class="about-content">
+            <div class="about-section">
+                <h3>🏪 Về Cửa Hàng</h3>
+                <p>Cửa hàng Dụng Cụ Học Tập được thành lập với sứ mệnh cung cấp các sản phẩm văn phòng phẩm và dụng cụ học tập chất lượng cao với giá cả hợp lý cho học sinh, sinh viên và người đi làm.</p>
+            </div>
+            <div class="about-section">
+                <h3>🎯 Tầm Nhìn</h3>
+                <p>Trở thành địa chỉ tin cậy hàng đầu trong lĩnh vực cung cấp dụng cụ học tập tại Việt Nam, mang đến trải nghiệm mua sắm tiện lợi và sản phẩm chất lượng.</p>
+            </div>
+            <div class="about-section">
+                <h3>💎 Cam Kết</h3>
+                <ul>
+                    <li>✅ Sản phẩm chính hãng 100%</li>
+                    <li>✅ Giá cả cạnh tranh nhất thị trường</li>
+                    <li>✅ Giao hàng nhanh chóng toàn quốc</li>
+                    <li>✅ Đổi trả trong 7 ngày nếu lỗi sản phẩm</li>
+                    <li>✅ Hỗ trợ khách hàng 24/7</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trang Liên Hệ -->
+    <section id="contact" class="page" style="display:none;">
+        <h2>📞 Liên Hệ Với Chúng Tôi</h2>
+        <div class="contact-content">
+            <div class="contact-info-page">
+                <h3>Thông Tin Liên Hệ</h3>
+                <p><i class="fas fa-phone"></i> <strong>Số điện thoại:</strong> 0977670459</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> huynhphuc12122000@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> ĐƯỜNG D5, CHÂU THÀNH, VĨNH LONG</p>
+                <p><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> 8:00 - 21:00 (Thứ 2 - Chủ nhật)</p>
+            </div>
+            <div class="contact-form">
+                <h3>Gửi Tin Nhắn</h3>
+                <input type="text" id="contact-name" placeholder="Họ và tên">
+                <input type="email" id="contact-email" placeholder="Email">
+                <input type="text" id="contact-subject" placeholder="Tiêu đề">
+                <textarea id="contact-message" placeholder="Nội dung tin nhắn" rows="5"></textarea>
+                <button onclick="sendContactMessage()">Gửi Tin Nhắn</button>
+            </div>
+        </div>
+        
+        <!-- Google Map -->
+        <div class="contact-map">
+            <h3><i class="fas fa-map-marked-alt"></i> Bản Đồ</h3>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15693.847!2d105.9419!3d10.2469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a9e5e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2zQ2jDonUgVGjDoG5oLCBWxKluaCBMb25n!5e0!3m2!1svi!2svn!4v1703123456789!5m2!1svi!2svn"
+                    width="100%" 
+                    height="350" 
+                    style="border:0; border-radius: 12px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trang Thông Tin Tài Khoản -->
+    <section id="profile" class="page" style="display:none;">
+        <h2>👤 Thông Tin Tài Khoản</h2>
+        <div class="profile-content">
+            <div class="profile-info">
+                <p><strong>Tên đăng nhập:</strong> <span id="profile-username"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="profile-phone"></span></p>
+                <p><strong>Ngày đăng ký:</strong> <span id="profile-date"></span></p>
+            </div>
+            <div class="profile-orders">
+                <h3>📦 Lịch Sử Đơn Hàng</h3>
+                <div id="profile-orders-list"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+        <section id="home" class="page active">
+            <div class="banner-container">
+                <div class="banner-inner">
+                    <div id="banner-track" class="banner-track">
+                        <!-- Banner 1: Khuyến mãi mùa tựu trường -->
+                        <div class="slide">
+                            <img src="./img/banner1.jpg" alt="Khuyến mãi mùa tựu trường" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-banner-1')">
+                            <div class="banner-overlay">
+                                <div class="banner-content">
+                                    <span class="banner-tag">🎒 KHUYẾN MÃI ĐẶC BIỆT</span>
+                                    <h1>Mùa Tựu Trường 2025</h1>
+                                    <p>Giảm giá đến <strong>30%</strong> cho học sinh - sinh viên</p>
+                                    <button class="banner-btn" onclick="chuyenTrang('products')">Mua Ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Banner 2: Sản phẩm chất lượng -->
+                        <div class="slide">
+                            <img src="./img/banner2.jpg" alt="Bộ dụng cụ học tập chất lượng" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-banner-2')">
+                            <div class="banner-overlay">
+                                <div class="banner-content">
+                                    <span class="banner-tag">📚 SẢN PHẨM CHÍNH HÃNG</span>
+                                    <h1>Dụng Cụ Học Tập Cao Cấp</h1>
+                                    <p>Bút - Vở - Balo - Máy Tính <strong>Giá Tốt Nhất</strong></p>
+                                    <button class="banner-btn" onclick="chuyenTrang('products')">Khám Phá</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Banner 3: Miễn phí vận chuyển -->
+                        <div class="slide">
+                            <img src="./img/banner3.jpg" alt="Miễn phí vận chuyển" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-banner-3')">
+                            <div class="banner-overlay">
+                                <div class="banner-content">
+                                    <span class="banner-tag">🚚 GIAO HÀNG TOÀN QUỐC</span>
+                                    <h1>Miễn Phí Vận Chuyển</h1>
+                                    <p>Đơn hàng từ <strong>200.000đ</strong> trở lên</p>
+                                    <button class="banner-btn" onclick="chuyenTrang('products')">Đặt Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Banner 4: Combo tiết kiệm (CSS gradient fallback) -->
+                        <div class="slide fallback-banner-4">
+                            <div class="banner-overlay">
+                                <div class="banner-content">
+                                    <span class="banner-tag">🎁 ƯU ĐÃI COMBO</span>
+                                    <h1>Mua 2 Tặng 1</h1>
+                                    <p>Áp dụng cho <strong>Vở Campus & Bút Thiên Long</strong></p>
+                                    <button class="banner-btn" onclick="chuyenTrang('products')">Xem Ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Banner 5: Thương hiệu uy tín -->
+                        <div class="slide fallback-banner-5">
+                            <div class="banner-overlay">
+                                <div class="banner-content">
+                                    <span class="banner-tag">⭐ THƯƠNG HIỆU UY TÍN</span>
+                                    <h1>Hàng Chính Hãng 100%</h1>
+                                    <p>Thiên Long - Campus - Casio - <strong>Bảo Hành 12 Tháng</strong></p>
+                                    <button class="banner-btn" onclick="chuyenTrang('products')">Tin Tưởng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="banner-indicators" class="banner-indicators" aria-hidden="true"></div>
+                </div>
+                <div class="banner-controls">
+                    <button id="banner-prev" aria-label="Previous banner"><i class="fas fa-chevron-left"></i></button>
+                    <button id="banner-next" aria-label="Next banner"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Student promotions ticker / rotating announcements -->
+            <div id="student-offers" class="student-offers">
+                <div class="offers-inner">
+                    <div id="offers-list" class="offers-list"></div>
+                </div>
+                <div class="offers-controls">
+                    <button id="offers-prev" aria-label="Previous offer">◀</button>
+                    <button id="offers-next" aria-label="Next offer">▶</button>
+                </div>
+            </div>
+
+            <!-- Quick Category Navigation -->
+            <div class="category-quick-nav">
+                <h2>🎯 Danh Mục Nổi Bật</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="chuyenTrang('products'); filterByCategory('Bút viết')">
+                        <div class="category-icon">✏️</div>
+                        <h3>Bút Viết</h3>
+                        <p>Bút bi, bút máy, bút chì</p>
+                        <span class="category-count">15+ sản phẩm</span>
+                    </div>
+                    <div class="category-card" onclick="chuyenTrang('products'); filterByCategory('Vở/Sổ')">
+                        <div class="category-icon">📓</div>
+                        <h3>Vở & Sổ</h3>
+                        <p>Vở học sinh, sổ tay</p>
+                        <span class="category-count">20+ sản phẩm</span>
+                    </div>
+                    <div class="category-card" onclick="chuyenTrang('products'); filterByCategory('Dụng cụ học tập')">
+                        <div class="category-icon">📐</div>
+                        <h3>Dụng Cụ</h3>
+                        <p>Thước, máy tính, balo</p>
+                        <span class="category-count">25+ sản phẩm</span>
+                    </div>
+                    <div class="category-card" onclick="chuyenTrang('products')">
+                        <div class="category-icon">🎨</div>
+                        <h3>Nghệ Thuật</h3>
+                        <p>Màu vẽ, bút lông</p>
+                        <span class="category-count">10+ sản phẩm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promotional Banners Grid -->
+            <div class="promo-banners-grid">
+                <!-- Banner 1: Back to School -->
+                <div class="promo-banner promo-banner-primary">
+                    <div class="promo-banner-content">
+                        <div class="promo-banner-icon">🎒</div>
+                        <div class="promo-banner-text">
+                            <h3>Mùa Tựu Trường 2025</h3>
+                            <p>Giảm giá đến <strong>30%</strong> cho tất cả dụng cụ học tập</p>
+                        </div>
+                    </div>
+                    <div class="promo-banner-badge">HOT</div>
+                </div>
+
+                <!-- Banner 2: Free Shipping -->
+                <div class="promo-banner promo-banner-success">
+                    <div class="promo-banner-content">
+                        <div class="promo-banner-icon">🚚</div>
+                        <div class="promo-banner-text">
+                            <h3>Miễn Phí Vận Chuyển</h3>
+                            <p>Đơn hàng từ <strong>200.000đ</strong> trở lên</p>
+                        </div>
+                    </div>
+                    <div class="promo-banner-badge">FREE</div>
+                </div>
+
+                <!-- Banner 3: Student Discount -->
+                <div class="promo-banner promo-banner-warning">
+                    <div class="promo-banner-content">
+                        <div class="promo-banner-icon">🎓</div>
+                        <div class="promo-banner-text">
+                            <h3>Ưu Đãi Sinh Viên</h3>
+                            <p>Giảm thêm <strong>15%</strong> khi có thẻ sinh viên</p>
+                        </div>
+                    </div>
+                    <div class="promo-banner-badge">-15%</div>
+                </div>
+
+                <!-- Banner 4: Combo Deal -->
+                <div class="promo-banner promo-banner-accent">
+                    <div class="promo-banner-content">
+                        <div class="promo-banner-icon">🎁</div>
+                        <div class="promo-banner-text">
+                            <h3>Mua 2 Tặng 1</h3>
+                            <p>Áp dụng cho <strong>vở Campus</strong> và bút Thiên Long</p>
+                        </div>
+                    </div>
+                    <div class="promo-banner-badge">2+1</div>
+                </div>
+            </div>
+            
+            <!-- Promotions: Best selling product ads -->
+            <div class="promo-section">
+                <h2>🔥 Khuyến Mãi - Sản Phẩm Bán Chạy</h2>
+                <div class="promo-controls">
+                    <button id="promo-prev" aria-label="Previous">◀</button>
+                    <button id="promo-next" aria-label="Next">▶</button>
+                </div>
+                <div id="promo-list" class="promo-grid"></div>
+            </div>
+
+            <!-- Consumer Reviews (Homepage) -->
+            <div class="reviews-section">
+                <h2>🗣️ Đánh giá & Phản hồi từ Người tiêu dùng</h2>
+                <div class="review-form">
+                    <input id="review-name" type="text" placeholder="Tên của bạn (tùy chọn)">
+                    <input id="review-email" type="email" placeholder="Email (để admin phản hồi - tùy chọn)">
+                    <div class="rating-row">
+                        <label>Đánh giá:</label>
+                        <select id="review-rating" aria-label="Chọn số sao">
+                            <option value="5">5 ⭐⭐⭐⭐⭐</option>
+                            <option value="4">4 ⭐⭐⭐⭐</option>
+                            <option value="3">3 ⭐⭐⭐</option>
+                            <option value="2">2 ⭐⭐</option>
+                            <option value="1">1 ⭐</option>
+                        </select>
+                    </div>
+                    <textarea id="review-message" rows="3" placeholder="Viết phản hồi của bạn..."></textarea>
+                    <div class="review-actions">
+                        <button onclick="submitReview()">Gửi phản hồi</button>
+                        <button onclick="clearReviewForm()" class="btn-delete">Xóa</button>
+                    </div>
+                </div>
+
+                <div id="public-reviews-list" class="reviews-list">
+                    <!-- reviews will be injected here -->
+                </div>
+            </div>
+
+            <!-- featured-sites removed as requested -->
+        </section>
+
+        <section id="products" class="page" style="display:none;">
+            <!-- Large Promotional Banner -->
+            <div class="large-promo-banner">
+                <div class="large-promo-content">
+                    <div class="large-promo-left">
+                        <span class="large-promo-tag">🎉 KHUYẾN MÃI ĐẶC BIỆT</span>
+                        <h2>Mua Sắm Thông Minh<br/>Tiết Kiệm Tối Đa!</h2>
+                        <p>Giảm giá lên đến <span class="highlight">40%</span> cho đơn hàng đầu tiên</p>
+                        <div class="large-promo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Miễn phí vận chuyển</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Đổi trả trong 7 ngày</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Hàng chính hãng 100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-promo-right">
+                        <div class="promo-circle">
+                            <div class="promo-circle-inner">
+                                <span class="promo-percent">40%</span>
+                                <span class="promo-off">OFF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Sản Phẩm Nổi Bật</h2>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="product-search" placeholder="Tìm kiếm sản phẩm theo tên, danh mục, thương hiệu..." onkeyup="searchProducts()">
+                    <button id="clear-search" onclick="clearSearch()" style="display:none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterByCategory('all')">Tất cả</button>
+                    <button class="filter-btn" onclick="filterByCategory('Bút viết')">Bút viết</button>
+                    <button class="filter-btn" onclick="filterByCategory('Vở/Sổ')">Vở/Sổ</button>
+                    <button class="filter-btn" onclick="filterByCategory('Dụng cụ học tập')">Dụng cụ học tập</button>
+                </div>
+            </div>
+            
+            <div id="search-results-info" style="display:none; margin-bottom:15px; color:#666; font-style:italic;"></div>
+            
+            <div id="product-list" class="product-grid">
+                </div>
+        </section>
+
+        <section id="cart" class="page" style="display:none;">
+            <h2>Giỏ Hàng Của Bạn</h2>
+            <div id="cart-items">Chưa có sản phẩm nào</div>
+            <button class="btn-checkout" onclick="showCheckoutForm()">Thanh Toán</button>
+            
+            <!-- Checkout Form -->
+            <div id="checkout-form" style="display:none; margin-top:30px; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                <h3>Thông Tin Thanh Toán</h3>
+                <div style="display:flex; flex-direction:column; gap:15px; max-width:500px;">
+                    <div>
+                        <label for="checkout-name">Họ và tên:</label>
+                        <input type="text" id="checkout-name" placeholder="Nguyễn Văn A" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                    </div>
+                    <div>
+                        <label for="checkout-phone">Số điện thoại:</label>
+                        <input type="tel" id="checkout-phone" placeholder="0123456789" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                    </div>
+                    <div>
+                        <label for="checkout-address">Địa chỉ giao hàng:</label>
+                        <textarea id="checkout-address" rows="3" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;"></textarea>
+                    </div>
+                    <div>
+                        <label for="checkout-payment">Phương thức thanh toán:</label>
+                        <select id="checkout-payment" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                            <option value="bank">Chuyển khoản ngân hàng</option>
+                            <option value="momo">Ví MoMo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="checkout-note">Ghi chú (tùy chọn):</label>
+                        <textarea id="checkout-note" rows="2" placeholder="Ghi chú cho đơn hàng..." style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;"></textarea>
+                    </div>
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <button onclick="processCheckout()" style="background:#16a085;">Xác Nhận Đặt Hàng</button>
+                        <button onclick="cancelCheckout()" class="btn-delete">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="admin-login" class="page" style="display:none;">
+    <div class="auth-form admin-form">
+        <h2>🔑 Đăng Nhập Quản Trị</h2>
+        <p style="color: #e74c3c;">Chỉ dành cho Người Quản Trị Hệ Thống</p>
+        <input type="text" id="admin-user" placeholder="Tên đăng nhập Admin">
+        <input type="password" id="admin-pass" placeholder="Mật khẩu">
+        <button onclick="xuLyDangNhapAdmin()">Đăng Nhập</button>
+        <p><a href="#" onclick="chuyenTrang('home')">Quay lại Trang Chủ</a></p>
+    </div>
+</section>
+       <!-- admin-dashboard removed (replaced by more detailed admin-panel) -->
+
+<section id="admin-panel" class="page" style="display:none;">
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <h3 onclick="showAdminContent('revenue')">📊 Thống Kê Doanh Thu</h3>
+                <h3 onclick="showAdminContent('products')">🛒 Quản Lý Sản Phẩm</h3>
+                <h3 onclick="showAdminContent('orders')">📦 Quản Lý Đơn Hàng</h3>
+                <h3 onclick="showAdminContent('users')">👥 Quản Lý Người Dùng</h3>
+                <h3 onclick="showAdminContent('promotions')">🏷️ Quản Lý Khuyến Mãi Học Sinh</h3>
+                <h3 onclick="showAdminContent('reviews')">✉️ Quản Lý Phản Hồi / Đánh Giá</h3>
+                <h3 onclick="showAdminContent('articles')">📰 Quản Lý Bài Viết</h3>
+                <button class="btn-lock" onclick="lockAdminSession()" title="Khóa phiên quản trị">Khóa Admin</button>
+                <button class="btn-logout" onclick="dangXuatAdmin()">Đăng Xuất Admin</button>
+            </aside>
+
+            <main id="admin-main-content" class="main-content">
+                <div id="admin-products-view">
+                    <div id="product-form-view" style="display:none;">
+        <h3><span id="form-title">Thêm Sản Phẩm Mới</span></h3>
+        <div class="product-form-container">
+            <input type="hidden" id="product-id">
+            
+            <label for="p-name">Tên Sản Phẩm:</label>
+            <input type="text" id="p-name" required>
+            
+            <label for="p-price">Giá (VNĐ):</label>
+            <input type="number" id="p-price" required min="1000">
+            
+            <label for="p-category">Danh Mục:</label>
+            <select id="p-category">
+                <option value="but">Bút Viết</option>
+                <option value="vo">Vở/Sổ</option>
+                <option value="dungcu">Dụng Cụ Học Tập</option>
+                <option value="khac">Khác</option>
+            </select>
+            
+            <label for="p-image">Đường dẫn Ảnh (URL hoặc local):</label>
+            <input type="text" id="p-image" placeholder="./img/tenfile.jpg" required>
+            
+            <label for="p-desc">Mô tả:</label>
+            <textarea id="p-desc"></textarea>
+            
+            <button onclick="saveProduct()">Lưu Sản Phẩm</button>
+            <button type="button" onclick="cancelForm()" class="btn-delete">Hủy Bỏ</button>
+        </div>
+    </div>
+                    <h3>Danh Sách Sản Phẩm</h3>
+                    <button class="btn-add-new" onclick="showAddProductForm()">+ Thêm Sản Phẩm Mới</button>
+                    <div id="admin-product-list">
+                        </div>
+                </div>
+                
+                <div id="admin-revenue-view" style="display:none;">
+                    <h3>📊 Thống Kê Doanh Thu</h3>
+                    <div class="revenue-filter">
+                        <label for="revenue-date">Chọn ngày:</label>
+                        <input type="date" id="revenue-date" onchange="filterRevenueByDate()">
+                        <button onclick="showAllRevenue()">Xem tất cả</button>
+                    </div>
+                    <div class="revenue-summary">
+                        <div class="revenue-card">
+                            <h4>Tổng doanh thu</h4>
+                            <p id="total-revenue">0 đ</p>
+                        </div>
+                        <div class="revenue-card">
+                            <h4>Số đơn hàng</h4>
+                            <p id="total-orders">0</p>
+                        </div>
+                        <div class="revenue-card">
+                            <h4>Doanh thu hôm nay</h4>
+                            <p id="today-revenue">0 đ</p>
+                        </div>
+                    </div>
+                    <h4>Chi tiết đơn hàng</h4>
+                    <div id="revenue-orders-list"></div>
+                </div>
+                <div id="admin-orders-view" style="display:none;">
+                    <h3>📦 Quản Lý Đơn Hàng</h3>
+                    <div id="admin-orders-list"></div>
+                </div>
+                <div id="admin-users-view" style="display:none;">
+                    <h3>👥 Quản Lý Người Dùng</h3>
+                    <div class="users-summary">
+                        <p>Tổng số người dùng: <strong id="total-users-count">0</strong></p>
+                    </div>
+                    <div id="admin-users-list"></div>
+                </div>
+                <div id="admin-promotions-view" style="display:none;">
+                    <h3>Quản Lý Khuyến Mãi Học Sinh</h3>
+                    <div class="promo-admin-form">
+                        <label for="promo-text">Thông điệp khuyến mãi:</label>
+                        <input id="promo-text" type="text" placeholder="Ví dụ: Giảm 15% cho học sinh ...">
+                        <label><input id="promo-active" type="checkbox" checked> Kích hoạt</label>
+                        <div style="margin-top:8px; display:flex; gap:10px;">
+                            <button onclick="addPromotion()">Thêm khuyến mãi</button>
+                            <button onclick="renderAdminPromotions()" class="btn-delete">Làm mới</button>
+                        </div>
+                    </div>
+                    <div id="admin-promos-list" style="margin-top:12px;">Chưa có khuyến mãi.</div>
+                </div>
+                <div id="admin-reviews-view" style="display:none;">
+                    <h3>Quản Lý Phản Hồi / Đánh Giá</h3>
+                    <div id="admin-reviews-list">
+                        <p>Không có phản hồi nào.</p>
+                    </div>
+                </div>
+                <div id="admin-articles-view" style="display:none;">
+                    <h3>📰 Quản Lý Bài Viết Tin Tức & Khuyến Mãi</h3>
+                    <div class="article-form-container">
+                        <h4 id="article-form-title">Thêm Bài Viết Mới</h4>
+                        <input type="hidden" id="article-id">
+                        <div class="form-group">
+                            <label for="article-title">Tiêu đề:</label>
+                            <input type="text" id="article-title" placeholder="Nhập tiêu đề bài viết">
+                        </div>
+                        <div class="form-group">
+                            <label for="article-type">Loại bài viết:</label>
+                            <select id="article-type">
+                                <option value="news">📰 Tin Tức</option>
+                                <option value="promo">🎁 Khuyến Mãi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="article-image">Ảnh đại diện (URL):</label>
+                            <input type="text" id="article-image" placeholder="./img/tenfile.jpg hoặc URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="article-summary">Tóm tắt:</label>
+                            <textarea id="article-summary" rows="2" placeholder="Mô tả ngắn gọn về bài viết"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="article-content">Nội dung chi tiết:</label>
+                            <textarea id="article-content" rows="5" placeholder="Nội dung đầy đủ của bài viết"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button onclick="saveArticle()">💾 Lưu Bài Viết</button>
+                            <button onclick="cancelArticleForm()" class="btn-delete">❌ Hủy</button>
+                        </div>
+                    </div>
+                    <h4 style="margin-top: 20px;">Danh Sách Bài Viết</h4>
+                    <div id="admin-articles-list"></div>
+                </div>
+            </main>
+        </div>
+    
+        </section>
+        <section id="login" class="page" style="display:none;">
+            <div class="auth-form">
+                <h2>Đăng Nhập</h2>
+                <input type="text" id="login-user" placeholder="Tên đăng nhập">
+                <input type="password" id="login-pass" placeholder="Mật khẩu">
+                <button onclick="xuLyDangNhap()">Đăng Nhập</button>
+                <p><a href="#" onclick="showForgotPassword()" class="forgot-password-link">Quên mật khẩu?</a></p>
+                <p>Chưa có tài khoản? <a href="#" onclick="chuyenTrang('register')">Đăng ký ngay</a></p>
+            </div>
+        </section>
+
+        <!-- Trang Quên Mật Khẩu -->
+        <section id="forgot-password" class="page" style="display:none;">
+            <div class="auth-form">
+                <h2>🔐 Quên Mật Khẩu</h2>
+                <p style="color: #666; margin-bottom: 15px;">Nhập email đã đăng ký để lấy lại mật khẩu</p>
+                <input type="email" id="forgot-email" placeholder="Email đã đăng ký">
+                <button onclick="xuLyQuenMatKhau()">Lấy Lại Mật Khẩu</button>
+                <p><a href="#" onclick="chuyenTrang('login')">← Quay lại Đăng nhập</a></p>
+            </div>
+        </section>
+
+        <section id="register" class="page" style="display:none;">
+            <div class="auth-form">
+                <h2>Đăng Ký</h2>
+                <input type="text" id="reg-user" placeholder="Tên đăng nhập mới">
+                <input type="tel" id="reg-phone" placeholder="Số điện thoại">
+                <input type="password" id="reg-pass" placeholder="Mật khẩu">
+                <button onclick="xuLyDangKy()">Đăng Ký</button>
+            </div>
+        </section>
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <div class="newsletter-content">
+            <div class="newsletter-text">
+                <h3>Đăng ký nhận ưu đãi</h3>
+                <p>Hãy đăng ký email của bạn để cập nhật thông tin khuyến mãi và được giảm giá 20% cho lần mua hàng đầu tiên của bạn</p>
+            </div>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Email của bạn" id="newsletter-email">
+                <button onclick="subscribeNewsletter()">GỬI</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <!-- Cột 1: Thông tin cửa hàng -->
+            <div class="footer-col footer-brand">
+                <div class="footer-logo">
+                    <span class="footer-logo-icon">📚</span>
+                    <span class="footer-logo-text">Dụng Cụ Học Tập</span>
+                </div>
+                <p><i class="fas fa-phone"></i> Hotline: 0977670459</p>
+                <p><i class="fas fa-envelope"></i> Email: huynhphuc12122000@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: Đường D5, Châu Thành, Vĩnh Long</p>
+            </div>
+
+            <!-- Cột 2: Về chúng tôi -->
+            <div class="footer-col">
+                <h4>Về Chúng Tôi</h4>
+                <ul>
+                    <li><a href="#" onclick="chuyenTrang('about')">Giới thiệu</a></li>
+                    <li><a href="#" onclick="chuyenTrang('contact')">Liên hệ</a></li>
+                    <li><a href="#">Điều khoản sử dụng</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Hướng dẫn sử dụng</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Liên kết nhanh -->
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="#" onclick="chuyenTrang('home')">Trang chủ</a></li>
+                    <li><a href="#" onclick="chuyenTrang('about')">Giới thiệu</a></li>
+                    <li><a href="#" onclick="chuyenTrang('products')">Sản phẩm</a></li>
+                    <li><a href="#" onclick="chuyenTrang('news')">Tin tức</a></li>
+                    <li><a href="#" onclick="chuyenTrang('promo')">Khuyến mãi</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Kết nối -->
+            <div class="footer-col footer-social">
+                <h4>Kết nối với chúng tôi</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="zalo-text">Liên hệ Zalo trực tiếp</p>
+                <img src="./img/zl.jpg" alt="Zalo" style="width: 80px; height: 80px; border-radius: 4px; margin-top: 8px;">
+                <div class="qr-code">
+                    <img src="./img/qr-zalo.png" alt="QR Zalo" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025 All Rights Reserved. Made with <span style="color:#e74c3c;">❤</span> by Phan Huỳnh Phúc</p>
+        </div>
+    </footer>
+        <!-- UI helpers: toast & modal -->
+        <div id="ui-toast" class="ui-toast" aria-live="polite" role="status"></div>
+        <div id="ui-modal" class="ui-modal" style="display:none" role="dialog" aria-hidden="true">
+            <div class="ui-modal-panel">
+                <h3 id="ui-modal-title"></h3>
+                <div id="ui-modal-body"></div>
+                <div class="ui-modal-actions">
+                    <button id="ui-modal-cancel">Huỷ</button>
+                    <button id="ui-modal-confirm">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Detail Modal    -->
+        <div id="product-detail-modal" class="product-modal" style="display:none" role="dialog" aria-hidden="true">
+            <div class="product-modal-overlay" onclick="closeProductDetail()"></div>
+            <div class="product-modal-content">
+                <button class="product-modal-close" onclick="closeProductDetail()" aria-label="Đóng">×</button>
+                <div id="product-detail-body"></div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+    </html>

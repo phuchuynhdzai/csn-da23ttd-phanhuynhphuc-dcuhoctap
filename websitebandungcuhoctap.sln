@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "c#", "c#", "{1DBD47E2-544B-F58A-27AE-70AE938492FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolSuppliesAPI", "c#\SchoolSuppliesAPI.csproj", "{E109A998-33E2-7999-14C5-40BE013156DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E109A998-33E2-7999-14C5-40BE013156DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E109A998-33E2-7999-14C5-40BE013156DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E109A998-33E2-7999-14C5-40BE013156DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E109A998-33E2-7999-14C5-40BE013156DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E109A998-33E2-7999-14C5-40BE013156DE} = {1DBD47E2-544B-F58A-27AE-70AE938492FA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B9FA281-6C74-41E1-A1C3-DB710975F50A}
+	EndGlobalSection
+EndGlobal
